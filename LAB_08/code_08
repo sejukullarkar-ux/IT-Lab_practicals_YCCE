@@ -1,0 +1,61 @@
+//Write a program which accepts undirected graph and a starting node, determine the lengths of the shortest paths from the starting node to all other nodes in the graph. If a node is unreachable. its distance is -1. Nodes will be numbered consecutively from 1 to n. and edges will have varying distances or lengths. Find the sub tree using Dijikstra algorithm.
+#include <stdio.h>
+#define MAX 3
+
+int adj[MAX][MAX], visited[MAX], queue[MAX], stack[MAX];
+int front = 0, rear = -1, top = -1;
+
+// BFS
+void bfs(int start, int n) {
+    int i;
+    for (i = 0; i < n; i++)
+        visited[i] = 0;
+    visited[start] = 1;
+    queue[++rear] = start;
+
+    printf("BFS Order: ");
+    while (front <= rear) {
+        int node = queue[front++];
+        printf("%d ", node + 1);
+        for (i = 0; i < n; i++) {
+            if (adj[node][i] && !visited[i]) {
+                visited[i] = 1;
+                queue[++rear] = i;
+            }
+        }
+    }
+}
+
+// DFS
+void dfs(int start, int n) {
+    int i;
+    for (i = 0; i < n; i++)
+        visited[i] = 0;
+
+    printf("\nDFS Order: ");
+    stack[++top] = start;
+
+    while (top >= 0) {
+        int node = stack[top--];
+        if (!visited[node]) {
+            printf("%d ", node + 1);
+            visited[node] = 1;
+            for (i = n - 1; i >= 0; i--) {
+                if (adj[node][i] && !visited[i])
+                    stack[++top] = i;
+            }
+        }
+    }
+}
+
+int main() {
+    int n = 3, i, j;
+    printf("Enter adjacency matrix (9x9):\n");
+    for (i = 0; i < n; i++)
+        for (j = 0; j < n; j++)
+            scanf("%d", &adj[i][j]);
+
+    bfs(0, n);
+    dfs(0, n);
+    return 0;
+}
