@@ -1,0 +1,61 @@
+//This C program creates a linked list to store integer elements. It prompts the user to enter elements and add them to the list until the user enters 0. It then traverses the list and prints each element and "" until reaching the null pointer. Finally, it displays the number of nodes in the list.
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+int main() {
+    struct Node *head = NULL, *temp = NULL, *newNode = NULL;
+    int num, count = 0;
+
+    printf("Enter numbers to add to the linked list (Enter 0 to stop):\n");
+
+    while (1) {
+        printf("Enter number: ");
+        if (scanf("%d", &num) != 1) {  // Input validation
+            printf("Invalid input! Please enter an integer.\n");
+            while(getchar() != '\n'); // clear input buffer
+            continue;
+        }
+
+        if (num == 0)
+            break;
+
+        // Create a new node
+        newNode = (struct Node*)malloc(sizeof(struct Node));
+        if (newNode == NULL) {
+            printf("Memory not allocated.\n");
+            return 1;
+        }
+
+        newNode->data = num;
+        newNode->next = NULL;
+
+        // Link the new node
+        if (head == NULL) {
+            head = newNode;
+        } else {
+            temp->next = newNode;
+        }
+
+        temp = newNode;
+        count++;
+    }
+
+    // Display the linked list
+    printf("\nLinked List: ");
+    temp = head;
+    while (temp != NULL) {
+        printf("%d => ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+
+    // Display node count
+    printf("Total number of nodes: %d\n", count);
+
+    return 0;
+}
