@@ -1,0 +1,62 @@
+//Write a program ram to implement a Binary Search algorithm. Write a search function which takes a SearchList as its first parameter and a Comparable as its second. If either parameter is null, or if the SearchList is empty, you should return NULimplement the following algorithm:
+//Examine the value in the middle of the current array and print it.
+//If the midpoint value is the value that we are looking for, return true
+//If the value that we are looking for is greater than the midpoint value. ad just the current array to start at the midpoint and print the index.
+//if the value that we are looking for is less than the midpoint value. ad just the current array to end at the midpoint and print the index.
+//Continue until you find the value. or until the start reaches the end.L
+#include <stdio.h>  
+#include <stdbool.h> 
+bool binarySearch(int A[], int N, int S) {
+    // If array is NULL or empty
+    if (A == NULL || N == 0)
+        return false;
+
+    int beg = 0;
+    int end = N - 1;
+    int mid;
+
+    while (beg <= end) {
+        mid = (beg + end) / 2;
+
+        printf("Examining middle value: %d (Index: %d)\n", A[mid], mid);
+        if (A[mid] == S)
+            return true;
+        else if (S > A[mid]) {
+            printf("Target greater than midpoint. Adjusting start to index %d.\n", mid + 1);
+            beg = mid + 1;
+        }
+        else {
+            printf("Target smaller than midpoint. Adjusting end to index %d.\n", mid - 1);
+            end = mid - 1;
+        }
+    }
+    return false;
+}
+
+int main() {
+    int N, S, i;
+    int A[100];
+
+    printf("Enter number of elements: ");
+    scanf("%d", &N);
+
+    if (N <= 0) {
+        printf("Array is empty.\n");
+        return 0;
+    }
+
+    printf("Enter %d elements (in sorted order):\n", N);
+    for (i = 0; i < N; i++) {
+        scanf("%d", &A[i]);
+    }
+
+    printf("Enter element to search: ");
+    scanf("%d", &S);
+
+    if (binarySearch(A, N, S))
+        printf("Element %d found in array.\n", S);
+    else
+        printf("Element %d not found in array.\n", S);
+
+    return 0;
+}
