@@ -33,10 +33,10 @@ Support the program with appropriate functions for each of the above operations
 5. Write a program to insert Number of Nodes in the Binary Tree and Traverse in Inorder. Preorder and Post Order and Search an element in Binary Tree(Display NULL if not found. If found Display Found)
  
 6. Implement Binary search tree(BST) with following Menu operations.
-1. Search an element in BST(Display NULL if not found. If found Display Found)
-2. Insert an element in BST
-3. Delete leaf element in BST
-4. Exit
+a. Search an element in BST(Display NULL if not found. If found Display Found)
+b. Insert an element in BST
+c. Delete leaf element in BST
+d. Exit
 
 7. Consider the undirected graph G. consisting of n nodes laid out in a 3-by-3 grid: Start searching at node 1. and break ties for exploring the next node based on lower numerical order (i.e. add nodes to a queue low to high. add nodes to a stack high to low). (a) In what order are nodes marked as explored by BFS? (b) In what order are nodes marked as explored by DFS?
 
